@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qureon design system: kaders voor branding</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wdth,wght,GRAD,ROND@6..144,25..151,1..1000,0..100,0..100&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* surfaces */
+  --bg:#FFFFFF;
+  --card:#EDF3EC;
+  --card-inner:#FFFFFF;
+  --card-inner-2:#F5F9F4;
+
+  /* content */
+  --title:#0B3018;
+  --on-surface:#17201A;
+  --on-surface-variant:#3F4C42;
+  --outline-variant:#CBD8CC;
+
+  /* rollen, alles binnen de merkfamilie */
+  --primary:#0E3B1F; --on-primary:#FFFFFF;
+  --primary-container:#DEE3DC; --on-primary-container:#1B211B;
+  --tertiary-container:#E9F8CE; --on-tertiary-container:#2B3D12;
+  --secondary-container:#D5E5D9; --on-secondary-container:#12301F;
+  --error:#3F4C42; --error-container:#EBEFE8; --on-error-container:#2A332B;
+  --icon-surface:#DDEBDD;
+  --text:#000000; --text-soft:#3E423C;
+  --line-soft:#C9D1C9; --fill:#F6F8F5;
+  --lime:#C9F38C; --dark:#161C18;
+  --accent:#C6F58C; --on-accent:#0B3018;
+  --accent-soft:#E7F8CF;
+  --mid:#2E7D52;
+
+  --shape-s:8px; --shape-m:12px; --shape-l:16px; --shape-xl:28px;
+  --easing:cubic-bezier(.2,0,0,1);
+  --font:"Inter",sans-serif;
+  --font-title:"Google Sans Flex","Google Sans",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--on-surface);
+  font-family:var(--font);font-optical-sizing:auto;
+  font-variation-settings:"ROND" 0,"GRAD" 0;
+  font-size:16px;line-height:24px;letter-spacing:.5px;
+  -webkit-tap-highlight-color:transparent;
+}
+.wrap{max-width:960px;margin:0 auto;padding:64px 24px 96px;display:flex;flex-direction:column;gap:40px}
+@media (min-width:1100px){.wrap{padding:96px 0}}
+
+/* ---------- M3 type scale ---------- */
+.display-s{font-size:36px;line-height:44px;letter-spacing:0;font-weight:400}
+.headline-s{font-size:24px;line-height:32px;letter-spacing:0;font-weight:400}
+.title-l{font-size:22px;line-height:28px;letter-spacing:0;font-weight:400}
+.title-m{font-size:16px;line-height:24px;letter-spacing:.15px;font-weight:500}
+.title-s{font-size:14px;line-height:20px;letter-spacing:.1px;font-weight:500}
+.body-l{font-size:16px;line-height:24px;letter-spacing:.5px;font-weight:400}
+.body-m{font-size:16px;line-height:24px;letter-spacing:.25px;font-weight:400}
+.label-l{font-size:14px;line-height:20px;letter-spacing:.1px;font-weight:500}
+.label-m{font-size:12px;line-height:16px;letter-spacing:.5px;font-weight:500}
+.label-s{font-size:12px;line-height:16px;letter-spacing:.5px;font-weight:500}
+.eyebrow-txt,.label-m,.label-s{font-variant-numeric:tabular-nums}
+.display-s,.headline-s,.title-l,h2.sec,.hero h1,
+.lg-title,.src .s-txt b{
+  font-family:var(--font-title);font-optical-sizing:auto;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.hero h1{margin:0;color:var(--text);font-family:var(--font-title);font-optical-sizing:auto;
+  font-size:clamp(34px,5.2vw,54px);line-height:1.5;letter-spacing:0;font-weight:500;
+  font-variation-settings:"GRAD" 0,"ROND" 0,"wdth" 100}
+.hero p{margin:8px 0 0;max-width:64ch;color:var(--text-soft);font-size:18px;line-height:1.5}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--text);
+  border-radius:999px;padding:4px 12px;margin:0;
+  font-family:var(--font-title);font-size:14px;line-height:1.5;font-weight:500;letter-spacing:0;
+}
+.eyebrow svg{width:16px;height:16px}
+
+/* ---------- cards ---------- */
+.card{background:#FFFFFF;border:1px solid var(--line-soft);border-radius:24px;padding:32px;margin:0}
+.sect{display:flex;flex-direction:column}
+.stack{display:flex;flex-direction:column;gap:12px}
+.diagram-card{padding:0;background:none;border:0;margin:0}
+.diagram-grid{display:grid;gap:28px;position:relative}
+@media (min-width:760px){
+  .diagram-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+  .legend-col{align-self:center}
+}
+.legend-col{display:grid;gap:24px;align-content:center}
+.connector{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none;overflow:visible}
+#connPath{transition:stroke-dashoffset .55s var(--easing)}
+#connDot{transition:opacity .25s var(--easing)}
+@media (min-width:760px){.connector{display:block}}
+svg.rings{display:block;width:100%;height:auto;max-width:340px;margin:0 auto;overflow:visible}
+.ring-hit{
+  cursor:pointer;outline:none;
+  transform:scale(.04);transform-box:fill-box;transform-origin:center;
+  transition:transform .72s var(--easing) var(--d,0ms),stroke-width .25s var(--easing);
+}
+.diagram-card.in .ring-hit{transform:scale(1)}
+.ring-hit.hl{stroke-width:3}
+.ring-hit.active{stroke-width:3}
+.focus-ring{fill:none;stroke:var(--primary);stroke-width:3;opacity:0;pointer-events:none;
+  transition:opacity .2s var(--easing)}
+.ring-hit:focus-visible + .focus-ring{opacity:1}
+
+/* ---------- legenda ---------- */
+.lg{
+  display:flex;align-items:center;gap:8px;width:100%;text-align:left;
+  border:0;background:none;font-family:var(--font);color:inherit;cursor:pointer;
+  padding:10px 12px;margin:0 -12px;width:calc(100% + 24px);border-radius:var(--shape-m);position:relative;min-height:48px;
+}
+.lg::before{content:"";position:absolute;inset:0;border-radius:var(--shape-m);
+  background:var(--primary);opacity:0;transition:opacity .22s var(--easing)}
+.lg.hl::before,.lg:hover::before{opacity:.06}
+.lg:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.lg>*{position:relative}
+.mk{flex:0 0 24px;width:24px;height:24px;border-radius:999px;background:var(--mk);
+  box-shadow:inset 0 0 0 3px #16211A;transition:transform .25s var(--easing)}
+.lg.hl .mk,.lg.active .mk{transform:scale(1.14)}
+.lg-title{
+  font-family:var(--font-title);font-optical-sizing:auto;
+  font-size:20px;line-height:30px;letter-spacing:0;font-weight:400;color:#000000;
+}
+.lg-title b{font-weight:700}
+.lg-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--easing)}
+.lg.active + .lg-panel{grid-template-rows:1fr}
+.lg-panel-in{overflow:hidden}
+.lg-panel-box{background:var(--fill);border-radius:16px;padding:16px;margin:12px 0 0;width:100%;display:flex;flex-direction:column;gap:8px}
+.lg-panel-box p{margin:0;color:var(--text-soft);font-family:var(--font);font-size:16px;line-height:1.5;letter-spacing:0}
+
+/* ---------- detailpaneel ---------- */
+.detail{margin-top:20px;background:var(--card-inner);border-radius:var(--shape-l);padding:20px}
+.detail-empty{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+  color:var(--on-surface-variant)}
+.detail-body{opacity:0;transform:translateY(8px)}
+.detail-body.shown{opacity:1;transform:none;
+  transition:opacity .3s var(--easing),transform .3s var(--easing)}
+.detail-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.detail-num{flex:0 0 44px;width:44px;height:44px;border-radius:999px;display:grid;place-items:center;
+  background:var(--c-container);color:var(--c-on-container);
+  font-variant-numeric:tabular-nums;transition:background .3s var(--easing)}
+.detail-title{display:block;color:var(--title)}
+.detail-verdict{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:999px;
+  text-transform:uppercase;background:var(--c-container);color:var(--c-on-container)}
+.detail-lead{margin:0 0 14px;color:var(--on-surface-variant)}
+.detail-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.detail-list li{display:flex;gap:10px;align-items:flex-start}
+.detail-list li::before{content:"";flex:0 0 6px;width:6px;height:6px;margin-top:9px;
+  border-radius:999px;background:var(--c-dot)}
+.btn-text{
+  display:inline-flex;align-items:center;gap:8px;border:0;background:none;cursor:pointer;
+  color:var(--text-soft);font-family:var(--font);font-size:16px;line-height:1.5;font-weight:600;
+  padding:6px 8px;margin:0 -8px;
+  border-radius:999px;position:relative;min-height:44px;
+}
+.btn-text::before{content:"";position:absolute;inset:0;border-radius:999px;background:var(--primary);
+  opacity:0;transition:opacity .2s var(--easing)}
+.btn-text:hover::before{opacity:.08}
+.btn-text:active::before{opacity:.12}
+.btn-text:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.btn-text span{display:inline-flex;position:relative;transition:transform .3s var(--easing)}
+.btn-text svg{width:20px;height:20px}
+.btn-text:hover span{transform:translateX(3px)}
+
+/* ---------- accordeon ---------- */
+.acc{background:#FFFFFF;border:1px solid var(--line-soft);border-radius:24px;margin:0;overflow:hidden}
+.acc-head{
+  width:100%;border:0;background:none;color:inherit;font-family:var(--font);text-align:left;
+  display:flex;align-items:center;gap:8px;padding:32px;cursor:pointer;position:relative;
+}
+.acc.open .acc-head{padding-bottom:24px}
+.acc-head::before{content:"";position:absolute;inset:0;background:var(--primary);opacity:0;
+  transition:opacity .2s var(--easing);pointer-events:none}
+.acc-head:hover::before{opacity:.08}
+.acc-head:active::before{opacity:.12}
+.acc-head:focus-visible{outline:3px solid var(--primary);outline-offset:-3px}
+.acc-icon{flex:0 0 auto;margin-right:8px;padding:12px;border-radius:999px;display:grid;place-items:center;
+  background:var(--dark);color:var(--lime);position:relative}
+.acc-icon svg{width:32px;height:32px}
+.acc-title{flex:1;min-width:0;position:relative}
+.acc-title .k{display:block;color:#000000;text-transform:uppercase;
+  font-family:var(--font);font-size:16px;line-height:24px;letter-spacing:0;font-weight:300}
+.acc-title b{display:block;color:#000000;font-family:var(--font);
+  font-size:20px;line-height:30px;letter-spacing:0;font-weight:600}
+.chev{flex:0 0 32px;color:#000000;position:relative;transition:transform .4s var(--easing)}
+.chev svg{width:32px;height:32px}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s var(--easing)}
+.acc.open .acc-panel{grid-template-rows:1fr}
+.acc-inner{overflow:hidden}
+.acc-body{padding:0 32px 32px;opacity:0;transform:translateY(-6px);
+  transition:opacity .3s var(--easing) .08s,transform .3s var(--easing) .08s}
+.acc.open .acc-body{opacity:1;transform:none}
+.acc-body>p.intro{margin:0 0 24px;color:var(--text-soft);
+  font-family:var(--font);font-size:18px;line-height:1.5;letter-spacing:0;font-weight:400}
+@keyframes accPulse{
+  0%{box-shadow:0 0 0 0 rgba(14,59,31,.28)}
+  100%{box-shadow:0 0 0 14px rgba(14,59,31,0)}
+}
+.acc.pulse{animation:accPulse .9s var(--easing)}
+
+/* ---------- inner content ---------- */
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.rules li{background:var(--fill);padding:24px;border-radius:0}
+.rules li:first-child{border-radius:16px 16px 0 0}
+.rules li:last-child{border-radius:0 0 16px 16px}
+.rules li:only-child{border-radius:16px}
+.rules li b{display:block;color:#000000;font-family:var(--font);
+  font-size:20px;line-height:30px;letter-spacing:0;font-weight:500}
+.rules li em{font-style:normal;display:block;margin-top:8px;color:var(--text-soft);
+  font-family:var(--font);font-size:16px;line-height:1.75;letter-spacing:0;font-weight:400}
+.split{background:var(--fill);border-radius:16px;padding:24px;margin-bottom:2px}
+.split>b{display:block;color:#000000;margin-bottom:12px;font-family:var(--font);
+  font-size:20px;line-height:30px;letter-spacing:0;font-weight:500}
+.row{display:flex;gap:12px;padding:12px 0;border-top:1px solid #E1E7DF;align-items:flex-start}
+.row:first-of-type{border-top:none;padding-top:0}
+.who{flex:0 0 auto;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+.who.b{background:var(--tertiary-container);color:var(--on-tertiary-container)}
+.who.u{background:var(--primary-container);color:var(--on-primary-container)}
+.row .t{flex:1;color:var(--text-soft);font-size:16px;line-height:1.75;font-weight:400}
+.chip{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 12px;border-radius:8px;
+  background:var(--lime);color:var(--dark);font-size:16px;line-height:1.5;font-weight:500;font-variant-numeric:tabular-nums}
+.gate{background:var(--fill);border-radius:16px;padding:24px;margin-bottom:2px}
+.gate .when{display:inline-block;margin-bottom:10px;padding:4px 10px;border-radius:999px;
+  text-transform:uppercase;background:var(--error-container);color:var(--on-error-container)}
+.gate p{margin:0;color:var(--text-soft);font-size:16px;line-height:1.75;font-weight:400}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;display:grid;gap:2px}
+ol.q li{background:var(--fill);padding:24px 24px 24px 60px;position:relative;border-radius:0;font-size:16px;line-height:1.75;font-weight:400;color:var(--text-soft)}
+ol.q li:first-child{border-radius:16px 16px 0 0}
+ol.q li:last-child{border-radius:0 0 16px 16px}
+ol.q li::before{counter-increment:q;content:"Q" counter(q);position:absolute;left:24px;top:26px;
+  color:var(--error);font-size:12px;line-height:24px;font-weight:500;letter-spacing:.5px}
+
+h2.sec{margin:0 0 24px;padding:0;color:var(--text);display:flex;align-items:center;gap:16px;
+  font-family:var(--font);font-size:28px;line-height:1.5;letter-spacing:0;font-weight:500}
+h2.sec .ico{background:var(--lime);color:var(--dark);border-radius:999px;
+  width:64px;height:64px;display:grid;place-items:center;flex:0 0 64px}
+h2.sec .ico svg{width:40px;height:40px}
+
+/* ---------- bronnen ---------- */
+.src-group{margin-bottom:24px;display:flex;flex-direction:column}
+.src-group:last-child{margin-bottom:0}
+.src-group h3{margin:0 0 24px;color:var(--text);text-transform:uppercase;
+  font-family:var(--font);font-size:16px;line-height:1.5;font-weight:300;letter-spacing:0}
+.src{display:flex;align-items:center;gap:16px;padding:16px;margin:0 -16px;border-radius:12px;
+  color:var(--text);text-decoration:none;position:relative}
+.src::before{content:"";position:absolute;inset:0;border-radius:12px;background:var(--dark);
+  opacity:0;transition:opacity .2s var(--easing)}
+.src:hover::before{opacity:.08}
+.src:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.src>*{position:relative}
+.src .s-ico{flex:0 0 40px;color:var(--dark);display:inline-flex}
+.src .s-ico svg{width:40px;height:40px}
+.src .s-txt{flex:1;display:flex;flex-direction:column;gap:4px}
+.src .s-txt b{display:block;color:var(--text);font-size:20px;line-height:1.5;letter-spacing:0;font-weight:600}
+.src .s-txt span{display:block;color:var(--text-soft);font-size:18px;line-height:1.5;letter-spacing:0;font-weight:400}
+.src .s-arrow{flex:0 0 24px;color:var(--dark);display:inline-flex;transition:transform .25s var(--easing)}
+.src .s-arrow svg{width:24px;height:24px}
+.src:hover .s-arrow{transform:translateX(3px)}
+
+footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(20px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .55s var(--easing),transform .55s var(--easing)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .ring-hit{transform:scale(1)}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="hero reveal">
+    <span class="eyebrow label-l eyebrow-txt">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+      Design system governance
+    </span>
+    <h1 class="display-s">Waar de branding wel en niet aan mag komen</h1>
+    <p class="body-l">Branding bepaalt hoe het merk eruitziet. Het design system bepaalt hoe de winkel werkt. Dit document legt de grens vast, inclusief de plekken waar die twee elkaar raken.</p>
+  </div>
+
+  <div class="card diagram-card reveal">
+    <div class="diagram-grid" id="dgrid">
+      <div class="rings-col">
+        <svg class="rings" viewBox="0 0 400 400" role="group" aria-label="Vier lagen, kies een laag voor meer informatie">
+          <circle class="ring-hit" data-layer="04" style="--d:300ms" tabindex="0" role="button" aria-label="Laag 04, buiten de ringen" cx="200" cy="200" r="188" fill="#E6EBE4" stroke="#A8B6A3" stroke-width="2" stroke-dasharray="7 9" stroke-linecap="round"/>
+          <circle class="focus-ring" cx="200" cy="200" r="195"/>
+          <circle class="ring-hit" data-layer="03" style="--d:200ms" tabindex="0" role="button" aria-label="Laag 03, vrij te wijzigen" cx="200" cy="200" r="141" fill="#4E8460" stroke="#4E8460" stroke-width="1.5"/>
+          <circle class="focus-ring" cx="200" cy="200" r="148"/>
+          <circle class="ring-hit" data-layer="02" style="--d:100ms" tabindex="0" role="button" aria-label="Laag 02, de merkopmaak" cx="200" cy="200" r="94" fill="#CFEF9A" stroke="#CFEF9A" stroke-width="1.5"/>
+          <circle class="focus-ring" cx="200" cy="200" r="101"/>
+          <circle class="ring-hit" data-layer="01" style="--d:0ms" tabindex="0" role="button" aria-label="Laag 01, de kern" cx="200" cy="200" r="47" fill="#1B211B" stroke="#1B211B" stroke-width="1.5"/>
+          <circle class="focus-ring" cx="200" cy="200" r="54"/>
+        </svg>
+      </div>
+
+      <div class="legend-col">
+        <div class="lg-item">
+        <button class="lg" data-layer="01" aria-expanded="false">
+          <span class="mk" style="--mk:#1B211B"></span>
+          <span class="lg-title"><b>01</b> - Kern</span>
+        </button>
+        <div class="lg-panel" data-panel="01"><div class="lg-panel-in">
+          <div class="lg-panel-box">
+            <p>Branding beslist hier niet over. Dit is de werking van de winkel, geen merkuiting. Wijzigen betekent herontwerpen, met eigen planning en prijs.</p>
+            <button class="btn-text" data-target="acc-00">Naar “Kern” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+          </div>
+        </div></div>
+        </div>
+        <div class="lg-item">
+        <button class="lg" data-layer="02" aria-expanded="false">
+          <span class="mk" style="--mk:#CFEF9A"></span>
+          <span class="lg-title"><b>02</b> - Merkopmaak</span>
+        </button>
+        <div class="lg-panel" data-panel="02"><div class="lg-panel-in">
+          <div class="lg-panel-box">
+            <p>Het domein van branding. Alles landt als tokenwaarde, dus doorvoeren kost minuten. De voorwaarde erachter is niet onderhandelbaar.</p>
+            <button class="btn-text" data-target="acc-01">Naar “Merkopmaak” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+          </div>
+        </div></div>
+        </div>
+        <div class="lg-item">
+        <button class="lg" data-layer="03" aria-expanded="false">
+          <span class="mk" style="--mk:#4E8460"></span>
+          <span class="lg-title"><b>03</b> - Vrij</span>
+        </button>
+        <div class="lg-panel" data-panel="03"><div class="lg-panel-in">
+          <div class="lg-panel-box">
+            <p>Geen designimpact en geen overleg nodig. Marketing kan dit zelf blijven wijzigen, ook na livegang.</p>
+            <button class="btn-text" data-target="acc-02">Naar “Vrij” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+          </div>
+        </div></div>
+        </div>
+        <div class="lg-item">
+        <button class="lg" data-layer="04" aria-expanded="false">
+          <span class="mk" style="--mk:#E6EBE4"></span>
+          <span class="lg-title"><b>04</b> - Buiten de ringen</span>
+        </button>
+        <div class="lg-panel" data-panel="04"><div class="lg-panel-in">
+          <div class="lg-panel-box">
+            <p>Wordt vaak als branding gepresenteerd, maar is het niet. Dit loopt via een aparte scope- en planningsafspraak.</p>
+            <button class="btn-text" data-target="acc-03">Naar “Buiten de ringen” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+          </div>
+        </div></div>
+        </div>
+      </div>
+      <svg class="connector" id="connector" aria-hidden="true"><path id="connPath" fill="none" stroke="#161C18" stroke-width="1.6" stroke-linejoin="round"/><circle id="connDot" r="4.8" fill="#161C18" opacity="0"/></svg>
+    </div>
+  </div>
+
+  <section class="sect">
+  <h2 class="sec headline-s reveal">
+    <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
+    De lagen
+  </h2>
+    <div class="stack">
+  <div class="acc open reveal" id="acc-00" style="--c-container:var(--primary-container);--c-on-container:var(--on-primary-container)">
+    <button class="acc-head" aria-expanded="true">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+      <span class="acc-title"><span class="k label-m">01 - VAST</span><b>De kern</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Branding beslist hier niet over. Dit is de werking van de winkel, geen merkuiting. Wijzigen betekent herontwerpen, met eigen planning en prijs.</p>
+      <ul class="rules">
+        <li><b>Layoutgrid, breakpoints en paginaopbouw</b><em>Welke kolommen er zijn, waar de layout omklapt en in welke volgorde componenten op een template staan</em></li>
+        <li><b>Spacingschaal en verticaal ritme</b><em>Alle marges en paddings komen uit één schaal van 4 en 8 px, zodat elk blok overal hetzelfde ademt</em></li>
+        <li><b>Componentstates</b><em>Default, hover, focus, active, disabled, loading, error, empty</em></li>
+        <li><b>Formulierlogica</b><em>Veldvolgorde, labelpositie, validatiemoment, positie van de foutmelding</em></li>
+        <li><b>Checkout- en quick-orderflow</b><em>Aantal stappen, de volgorde ervan en de plek van kredietlimiet, orderreferentie en ADR-melding</em></li>
+        <li><b>CTA-hiërarchie</b><em>Één primaire actie per scherm</em></li>
+        <li><b>WCAG 2.2 AA als ondergrens</b><em>De norm ligt vast en kan niet worden verlaagd omdat een merkkeuze er niet in past</em></li>
+        <li><b>Tokennamen en component-API</b><em>Elgentos bouwt hierop, hernoemen breekt de implementatie</em></li>
+        <li><b>De Hyvä component library als basis</b><em>Het design system is een uitbreiding van de bestaande Hyvä library, geen nieuw systeem; componenten worden toegevoegd, niet vervangen</em></li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-01" style="--c-container:var(--tertiary-container);--c-on-container:var(--on-tertiary-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>
+      <span class="acc-title"><span class="k label-m">02 - BRANDING BESLIST</span><b>De merkopmaak</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Het domein van branding. Alles landt als tokenwaarde, dus doorvoeren kost minuten. De voorwaarde erachter is niet onderhandelbaar.</p>
+      <ul class="rules">
+        <li><b>Kleuren</b><em>Voorwaarde: het palet is vooraf getoetst en voldoet aan WCAG 2.2 AA in élke combinatie waarin het voorkomt, inclusief states</em></li>
+        <li><b>Typografie</b><em>Voorwaarde: het font heeft tabulaire cijfers voor prijzen, staffels en SKU's, en werkt vanaf 16 px body</em></li>
+        <li><b>Beeldvorm, beeldstijl en fotografie</b><em>Voorwaarde: binnen de vastgelegde ratio's en cropzones</em></li>
+        <li><b>Logo</b><em>Voorwaarde: past in het vaste slot met minimale afmeting en clear space, horizontaal en gestapeld</em></li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-grijs" style="--c-container:var(--card-inner-2);--c-on-container:var(--title)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="15" cy="15" r="7"/></svg></span>
+      <span class="acc-title"><span class="k label-m">GRIJS GEBIED</span><b>Waar branding en UX elkaar raken</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Hier ligt de meeste kans op discussie. De beslisregel is telkens dezelfde: branding levert de waarde, UX bepaalt de toepassing.</p>
+      <div class="split"><b>Tekst- en fonthiërarchie, gewichten</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Fontfamilie, beschikbare gewichten, karakter van het merkschrift</span></div>
+        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Typeschaal, line-heights, welk gewicht op welk niveau, minimale leesgrootte</span></div>
+      </div>
+      <div class="split"><b>Kleuren en contrastwaarden</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De hexwaarden, vooraf getoetst op de norm</span></div>
+        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Welke kleur aan welk token hangt en waar hij verschijnt, plus de contrastbewaking binnen de eigen omgeving</span></div>
+      </div>
+      <div class="split"><b>Iconen</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Keuze uit een bestaande library en de gewenste stijlrichting</span></div>
+        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Eén set, één stroke-weight, vaste maten, en een icoon is nooit de enige betekenisdrager</span></div>
+      </div>
+      <div class="split"><b>Borderstijl en diktes</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Het karakter: scherp of rond, fijn of zwaar</span></div>
+        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Eén waarde per token, globaal doorgevoerd, en de border van een invoerveld haalt altijd 3:1</span></div>
+      </div>
+      <div class="split"><b>Copy</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Tone of voice, aanspreekvorm en merkvocabulaire</span></div>
+        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">UX-copy binnen die tone of voice: labels, foutmeldingen, lege staten, knopteksten en maximale lengtes per component</span></div>
+      </div>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-02" style="--c-container:var(--secondary-container);--c-on-container:var(--on-secondary-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></span>
+      <span class="acc-title"><span class="k label-m">03 - VRIJ</span><b>Vrij te wijzigen</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Geen designimpact, geen overleg nodig. Ook na livegang.</p>
+      <ul class="rules">
+        <li><b>Campagnebanners en USP-teksten</b><em>Binnen de bestaande blokken</em></li>
+        <li><b>Volgorde van contentblokken op marketingpagina's</b><em>Blokken mogen worden herschikt zolang het om bestaande blokken gaat</em></li>
+        <li><b>Sfeerbeeld en productfotografie</b><em>Binnen de vastgelegde ratio's</em></li>
+        <li><b>Tekstuele inhoud van bestaande contentblokken</b><em>Koppen en lopende tekst binnen de maximale lengte die per blok is vastgelegd</em></li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-03" style="--c-container:var(--error-container);--c-on-container:var(--on-error-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
+      <span class="acc-title"><span class="k label-m">04 - NIEUWE SCOPE</span><b>Buiten de ringen</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Wordt vaak als branding gepresenteerd, maar is het niet. Loopt via een aparte scope- en planningsafspraak.</p>
+      <ul class="rules">
+        <li><b>Nieuwe componenten of paginatypen</b><em>Wat nog niet in de library zit moet worden ontworpen, gebouwd en getest, inclusief alle states</em></li>
+        <li><b>Wijziging van flows of extra velden in de checkout</b><em>Raakt direct aan conversie en aan de koppeling met Magento, dus nooit een losse designwijziging</em></li>
+        <li><b>Producttypen buiten fase 1, zoals bundle en grouped</b><em>Eigen PDP-opbouw, eigen prijsweergave en eigen validatie in de winkelwagen</em></li>
+        <li><b>Extra functionaliteit in accountbeheer</b><em>Denk aan gebruikersrollen, budgetten of goedkeuringsstromen; dit is functionaliteit, geen opmaak</em></li>
+      </ul>
+    </div></div></div>
+  </div>
+    </div>
+  </section>
+
+  <section class="sect">
+  <h2 class="sec headline-s reveal">
+    <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg></span>
+    Afspraken
+  </h2>
+    <div class="stack">
+  <div class="acc reveal" id="acc-icons" style="--c-container:var(--tertiary-container);--c-on-container:var(--on-tertiary-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
+      <span class="acc-title"><span class="k label-m">ICONEN</span><b>Eerst kiezen, dan pas tekenen</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Een eigen icoonset is duur, traag en zelden beter. De volgorde ligt vast.</p>
+      <ul class="rules">
+        <li><b>1. Hugeicons</b><em>Betaalde licentie is aanwezig, breedste set, meerdere stijlen beschikbaar. Eerste keuze.</em></li>
+        <li><b>2. Lucide</b><em>Open source, consistente stroke, past bij een strak en technisch karakter</em></li>
+        <li><b>3. Material Symbols</b><em>Zeer volledig en herkenbaar, variabele optische maten, sterk bij veel functionele UI</em></li>
+        <li><b>4. Maatwerk</b><em>Alleen voor iconen die in geen enkele library bestaan, en alleen in de stijl van de gekozen set. Aparte scope en planning.</em></li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-a11y" style="--c-container:var(--primary-container);--c-on-container:var(--on-primary-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-3.92-6.98"/></svg></span>
+      <span class="acc-title"><span class="k label-m">TOEGANKELIJKHEID</span><b>Wie doet wat</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">De norm is WCAG 2.2 AA. Toetsing gebeurt vooraf bij de bron, niet achteraf in het design.</p>
+      <div class="split"><b>Branding</b>
+        <div class="row"><span class="who label-s b">levert</span><span class="t body-m">Een palet en typografie die aantoonbaar aan de norm voldoen, in de combinaties waarin ze gebruikt worden. Inclusief de toetsing zelf.</span></div>
+        <div class="row"><span class="who label-s b">draagt</span><span class="t body-m">De verantwoordelijkheid voor merkkeuzes die de norm niet halen. Een kleur die zakt gaat terug voor een variant.</span></div>
+      </div>
+      <div class="split"><b>Design system</b>
+        <div class="row"><span class="who label-s u">bewaakt</span><span class="t body-m">De contrastwaarden binnen de eigen omgeving: tokens, componenten, states en focusindicatoren.</span></div>
+        <div class="row"><span class="who label-s u">weigert</span><span class="t body-m">Aangeleverde waarden die de norm niet halen, in plaats van ze stilzwijgend te corrigeren.</span></div>
+      </div>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-toets" style="--c-container:var(--secondary-container);--c-on-container:var(--on-secondary-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <span class="acc-title"><span class="k label-m">TOETS BIJ OPLEVERING</span><b>De harde waarden</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="intro body-m">Een palet dat op wit werkt, kan op de surfacekleur zakken. Toets altijd de combinatie, nooit de losse kleur.</p>
+      <ul class="rules">
+        <li><b>Bodytekst op achtergrond</b><em>Contrastratio</em><span class="chip">4.5:1</span></li>
+        <li><b>Grote tekst, 24 px of 18.66 px bold</b><em>Contrastratio</em><span class="chip">3:1</span></li>
+        <li><b>Buttons, inputborders, betekenisdragende iconen</b><em>Contrast tegen de achtergrond</em><span class="chip">3:1</span></li>
+        <li><b>Focusindicator</b><em>Contrast tegen de aangrenzende kleur, zichtbaar zonder alleen kleurverschil</em><span class="chip">3:1</span></li>
+        <li><b>Voorraadstatus, foutmelding, staffelkorting</b><em>Betekenis nooit alleen via kleur</em><span class="chip">+ tekst of vorm</span></li>
+        <li><b>Aanklikbare elementen</b><em>Doelgrootte</em><span class="chip">24 px min, 44 px advies</span></li>
+        <li><b>Zoom</b><em>Functie blijft intact</em><span class="chip">200%</span></li>
+        <li><b>Disabled states</b><em>Formeel vrijgesteld, praktisch niet in B2B</em><span class="chip">3:1 aanhouden</span></li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-planning" style="--c-container:var(--error-container);--c-on-container:var(--on-error-container)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      <span class="acc-title"><span class="k label-m">PLANNING</span><b>Wat wanneer moet liggen</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <div class="gate"><span class="when label-s">nu, ook als concept</span>
+        <p>Richting voor kleurpalet, fontkeuze en logoconcept. Genoeg om één voorbeeldpagina mee te stylen. Concept is prima, definitief hoeft niet.</p></div>
+      <div class="gate"><span class="when label-s">uiterlijk 14 september, week 38</span>
+        <p>Definitief brandbook: kleuren met hexwaarden en contrasttoets, typografie met gewichten, logobestanden en icoonkeuze. Dit is de uiterste grens, niet de streefdatum.</p></div>
+      <div class="gate"><span class="when label-s">na oplevering van het design</span>
+        <p>Wijzigt het brandbook alsnog, dan worden de designaanpassingen die daaruit volgen apart in rekening gebracht. Niet als drempel, maar om eindeloos itereren te voorkomen.</p></div>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" id="acc-open" style="--c-container:var(--card-inner-2);--c-on-container:var(--title)">
+    <button class="acc-head" aria-expanded="false">
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+      <span class="acc-title"><span class="k label-m">OPEN</span><b>Nog te beslissen</b></span>
+      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <ol class="q">
+        <li>Op welke manier toont branding aan dat het palet getoetst is? Een contrastmatrix bij de oplevering, of alleen een verklaring?</li>
+        <li>Valt Qureon als B2B-groothandel binnen de reikwijdte van de EAA, of is WCAG 2.2 AA hier een eigen kwaliteitsnorm?</li>
+        <li>Wie levert de UX-copy in de eerste versie, en wie toetst die op tone of voice?</li>
+        <li>Wie is na oplevering eigenaar van het design system, en mag Elgentos het zelfstandig uitbreiden?</li>
+      </ol>
+    </div></div></div>
+  </div>
+    </div>
+  </section>
+
+  <section class="sect">
+  <h2 class="sec headline-s reveal">
+    <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 0 10h-3m-6 0H6a5 5 0 0 1 0-10h3"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span>
+    Bronnen
+  </h2>
+    <div class="stack">
+  <div class="card reveal">
+    <div class="src-group">
+      <h3 class="label-m">Icoonlibraries</h3>
+      <a class="src" href="https://hugeicons.com" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
+        <span class="s-txt"><b>Hugeicons</b><span>hugeicons.com · betaalde licentie aanwezig</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+      <a class="src" href="https://lucide.dev/icons/" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>
+        <span class="s-txt"><b>Lucide</b><span>lucide.dev · open source, ISC-licentie</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+      <a class="src" href="https://fonts.google.com/icons" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M3 9h18"/></svg></span>
+        <span class="s-txt"><b>Material Symbols</b><span>fonts.google.com/icons · variabele optische maten</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+    </div>
+
+    <div class="src-group">
+      <h3 class="label-m">Regelgeving en normen</h3>
+      <a class="src" href="https://eur-lex.europa.eu/eli/dir/2019/882/oj" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"/></svg></span>
+        <span class="s-txt"><b>European Accessibility Act</b><span>Richtlijn (EU) 2019/882 · volledige tekst op EUR-Lex</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+      <a class="src" href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-3.92-6.98"/></svg></span>
+        <span class="s-txt"><b>WCAG 2.2</b><span>w3.org · de norm zelf, niveau A tot en met AAA</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+      <a class="src" href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg></span>
+        <span class="s-txt"><b>Understanding contrast</b><span>w3.org · toelichting op de contrasteisen</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+      <a class="src" href="https://www.digitoegankelijk.nl" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><circle cx="12" cy="12" r="10"/></svg></span>
+        <span class="s-txt"><b>Digitoegankelijk</b><span>digitoegankelijk.nl · Nederlandse uitleg en hulpmiddelen</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+    </div>
+
+    <div class="src-group">
+      <h3 class="label-m">Basis van het design system</h3>
+      <a class="src" href="https://hyva.io" target="_blank" rel="noopener">
+        <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
+        <span class="s-txt"><b>Hyvä component library</b><span>De bestaande library is het vertrekpunt. Voor Qureon wordt die uitgebreid met de componenten die de B2B-flow nodig heeft, in dezelfde structuur en met dezelfde tokennamen.</span></span>
+        <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+    </div>
+  </section>
+
+  <footer class="reveal">Qureon design system, kaders v1.9, naar aanleiding van het designvoorstelgesprek van 22 juli 2026</footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rings  = document.querySelectorAll('.ring-hit');
+  var legend = document.querySelectorAll('.lg');
+  var grid   = document.getElementById('dgrid');
+  var connSv = document.getElementById('connector');
+  var connPt = document.getElementById('connPath');
+  var current = null;
+
+  function highlight(key, on){
+    rings.forEach(function(r){ if(r.dataset.layer === key) r.classList.toggle('hl', on); });
+    legend.forEach(function(l){ if(l.dataset.layer === key) l.classList.toggle('hl', on); });
+  }
+
+  var RADIUS = {'01':47,'02':94,'03':141,'04':188};
+
+  var connDot = document.getElementById('connDot');
+
+  function elbowPath(x1,y1,mid,y2,x2){
+    var r = 14;
+    var sy = (y2 < y1) ? -1 : 1;
+    r = Math.min(r, Math.abs(mid - x1), Math.abs(x2 - mid), Math.abs(y2 - y1) / 2);
+    if(r < 1) return 'M '+x1+' '+y1+' H '+mid+' V '+y2+' H '+x2;
+    return 'M '+x1+' '+y1+
+           ' L '+(mid - r)+' '+y1+
+           ' Q '+mid+' '+y1+' '+mid+' '+(y1 + sy*r)+
+           ' L '+mid+' '+(y2 - sy*r)+
+           ' Q '+mid+' '+y2+' '+(mid + r)+' '+y2+
+           ' L '+x2+' '+y2;
+  }
+
+  function drawConnector(animate){
+    if(!current || window.innerWidth < 760){
+      connPt.setAttribute('d',''); connDot.setAttribute('opacity','0'); return;
+    }
+    var svg = document.querySelector('svg.rings');
+    var item = document.querySelector('.lg[data-layer="'+current+'"] .mk');
+    if(!svg || !item) return;
+    var g = grid.getBoundingClientRect();
+    var sb = svg.getBoundingClientRect();
+    var m = item.getBoundingClientRect();
+    var scale = sb.width / 400;
+    var x1 = (sb.left - g.left) + (200 + RADIUS[current] - 14) * scale;
+    var y1 = (sb.top  - g.top ) + 200 * scale;
+    var x2 = (m.left - g.left);
+    var y2 = (m.top  - g.top ) + m.height / 2;
+    var mid = x1 + Math.max(28, (x2 - x1) * 0.55);
+
+    connPt.setAttribute('d', elbowPath(x1,y1,mid,y2,x2));
+    connDot.setAttribute('cx', x1); connDot.setAttribute('cy', y1);
+
+    if(animate && !reduce){
+      var len = connPt.getTotalLength();
+      connDot.setAttribute('opacity','0');
+      connPt.style.transition = 'none';
+      connPt.style.strokeDasharray = len;
+      connPt.style.strokeDashoffset = len;
+      void connPt.getBoundingClientRect();
+      connPt.style.transition = '';
+      connPt.style.strokeDashoffset = '0';
+      setTimeout(function(){ connDot.setAttribute('opacity','1'); }, 40);
+    } else {
+      connPt.style.transition = 'none';
+      connPt.style.strokeDasharray = 'none';
+      connPt.style.strokeDashoffset = '0';
+      connDot.setAttribute('opacity','1');
+    }
+  }
+
+  function select(key){
+    if(current === key){
+      legend.forEach(function(l){ l.classList.remove('active'); l.setAttribute('aria-expanded','false'); });
+      rings.forEach(function(r){ r.classList.remove('active'); });
+      current = null; connPt.setAttribute('d',''); connDot.setAttribute('opacity','0'); return;
+    }
+    current = key;
+    rings.forEach(function(r){ r.classList.toggle('active', r.dataset.layer === key); });
+    legend.forEach(function(l){
+      var on = l.dataset.layer === key;
+      l.classList.toggle('active', on);
+      l.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    setTimeout(function(){ drawConnector(true); }, reduce ? 0 : 400);
+  }
+
+  function openLayer(id){
+    var acc = document.getElementById(id); if(!acc) return;
+    acc.classList.add('in');
+    acc.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    setTimeout(function(){
+      var head = acc.querySelector('.acc-head');
+      if(!acc.classList.contains('open')){
+        acc.classList.add('open'); head.setAttribute('aria-expanded','true');
+      }
+      acc.classList.remove('pulse'); void acc.offsetWidth; acc.classList.add('pulse');
+      head.focus({preventScroll:true});
+      setTimeout(function(){ acc.classList.remove('pulse'); }, 950);
+    }, reduce ? 0 : 460);
+  }
+
+  function bind(el){
+    var key = el.dataset.layer;
+    el.addEventListener('mouseenter', function(){ highlight(key, true); });
+    el.addEventListener('mouseleave', function(){ highlight(key, false); });
+    el.addEventListener('focus', function(){ highlight(key, true); });
+    el.addEventListener('blur', function(){ highlight(key, false); });
+    el.addEventListener('click', function(){ select(key); });
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); select(key); }
+    });
+  }
+  rings.forEach(bind);
+  legend.forEach(bind);
+
+  document.querySelectorAll('.btn-text[data-target]').forEach(function(b){
+    b.addEventListener('click', function(){ openLayer(b.dataset.target); });
+  });
+
+  window.addEventListener('resize', function(){ drawConnector(false); }, {passive:true});
+
+  // accordeon
+  document.querySelectorAll('.acc-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var acc = btn.closest('.acc');
+      var open = acc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el = e.target, d = parseInt(el.dataset.d || '0', 10);
+          setTimeout(function(){ el.classList.add('in'); }, d);
+          io.unobserve(el);
+        }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    els.forEach(function(el, i){ el.dataset.d = (i % 4) * 60; io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+})();
+</script>
+</body>
+</html>
