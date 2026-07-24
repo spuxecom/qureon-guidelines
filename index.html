@@ -70,9 +70,12 @@ body{
 /* ---------- hero ---------- */
 .hero{padding:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .hero h1{margin:0;color:var(--text);font-family:var(--font-title);font-optical-sizing:auto;
-  font-size:clamp(34px,5.2vw,54px);line-height:1.5;letter-spacing:0;font-weight:500;
+  font-size:64px;line-height:1.15;letter-spacing:0;font-weight:500;
   font-variation-settings:"GRAD" 0,"ROND" 0,"wdth" 100}
-.hero p{margin:8px 0 0;max-width:64ch;color:var(--text-soft);font-size:18px;line-height:1.5}
+.hero p.hero-sub{margin:8px 0 0;color:var(--text);font-family:var(--font-title);font-optical-sizing:auto;
+  font-size:38px;line-height:1.25;letter-spacing:0;font-weight:400;
+  font-variation-settings:"GRAD" 0,"ROND" 0,"wdth" 100}
+.hero p{margin:12px 0 0;max-width:none;color:var(--text-soft);font-size:18px;line-height:1.5}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--text);
   border-radius:999px;padding:4px 12px;margin:0;
@@ -284,23 +287,24 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
   <div class="hero reveal">
     <span class="eyebrow label-l eyebrow-txt">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-      Design system governance
+      Branding &amp; UX guardrails
     </span>
-    <h1 class="display-s">Qureon:<br/>Branding guidelines voor UX&UI</h1>
-    <p class="body-l">Branding bepaalt hoe het merk eruitziet. Het design system bepaalt hoe het platform werkt. Dit document legt de grens en de kaders vast, inclusief de plekken waar die twee elkaar raken.</p>
+    <h1 class="display-s">Qureon:</h1>
+    <p class="hero-sub">De samenkomst tussen branding en het design system</p>
+    <p class="body-l">Branding bepaalt hoe het merk eruitziet. Het design system bepaalt hoe het platform werkt. Dit document legt vast waar die grens loopt en waar de twee elkaar raken.</p>
   </div>
 
   <div class="card diagram-card reveal">
     <div class="diagram-grid" id="dgrid">
       <div class="rings-col">
-        <svg class="rings" viewBox="0 0 400 400" role="group" aria-label="Vier lagen, kies een laag voor meer informatie">
-          <circle class="ring-hit" data-layer="04" style="--d:300ms" tabindex="0" role="button" aria-label="Laag 04, buiten de ringen" cx="200" cy="200" r="188" fill="#E6EBE4" stroke="#A8B6A3" stroke-width="2" stroke-dasharray="7 9" stroke-linecap="round"/>
+        <svg class="rings" viewBox="0 0 400 400" role="group" aria-label="Vier onderdelen, kies een onderdeel voor meer informatie">
+          <circle class="ring-hit" data-layer="04" style="--d:300ms" tabindex="0" role="button" aria-label="Onderdeel 04, aanvullend" cx="200" cy="200" r="188" fill="#E6EBE4" stroke="#A8B6A3" stroke-width="2" stroke-dasharray="7 9" stroke-linecap="round"/>
           <circle class="focus-ring" cx="200" cy="200" r="195"/>
-          <circle class="ring-hit" data-layer="03" style="--d:200ms" tabindex="0" role="button" aria-label="Laag 03, vrij te wijzigen" cx="200" cy="200" r="141" fill="#4E8460" stroke="#4E8460" stroke-width="1.5"/>
+          <circle class="ring-hit" data-layer="03" style="--d:200ms" tabindex="0" role="button" aria-label="Onderdeel 03, overlap" cx="200" cy="200" r="141" fill="#4E8460" stroke="#4E8460" stroke-width="1.5"/>
           <circle class="focus-ring" cx="200" cy="200" r="148"/>
-          <circle class="ring-hit" data-layer="02" style="--d:100ms" tabindex="0" role="button" aria-label="Laag 02, de merkopmaak" cx="200" cy="200" r="94" fill="#CFEF9A" stroke="#CFEF9A" stroke-width="1.5"/>
+          <circle class="ring-hit" data-layer="02" style="--d:100ms" tabindex="0" role="button" aria-label="Onderdeel 02, branding" cx="200" cy="200" r="94" fill="#CFEF9A" stroke="#CFEF9A" stroke-width="1.5"/>
           <circle class="focus-ring" cx="200" cy="200" r="101"/>
-          <circle class="ring-hit" data-layer="01" style="--d:0ms" tabindex="0" role="button" aria-label="Laag 01, de kern" cx="200" cy="200" r="47" fill="#1B211B" stroke="#1B211B" stroke-width="1.5"/>
+          <circle class="ring-hit" data-layer="01" style="--d:0ms" tabindex="0" role="button" aria-label="Onderdeel 01, kernopmaak" cx="200" cy="200" r="47" fill="#1B211B" stroke="#1B211B" stroke-width="1.5"/>
           <circle class="focus-ring" cx="200" cy="200" r="54"/>
         </svg>
       </div>
@@ -309,48 +313,48 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
         <div class="lg-item">
         <button class="lg" data-layer="01" aria-expanded="false">
           <span class="mk" style="--mk:#1B211B"></span>
-          <span class="lg-title"><b>01</b> - Kern</span>
+          <span class="lg-title"><b>01</b> - Kernopmaak</span>
         </button>
         <div class="lg-panel" data-panel="01"><div class="lg-panel-in">
           <div class="lg-panel-box">
-            <p>Branding heeft hier geen raakvlak. Dit is de werking van het platform, geen merkuiting. Wijzigen betekent in de bron herontwerpen</p>
-            <button class="btn-text" data-target="acc-00">Naar “Kern” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+            <p>Hoe het platform is opgebouwd: indeling, afstanden, het gedrag van knoppen en velden en de volgorde van de stappen in de bestelling. Wijzigen betekent opnieuw ontwerpen en opnieuw bouwen.</p>
+            <button class="btn-text" data-target="acc-00">Naar de sectie “Kernopmaak” <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
           </div>
         </div></div>
         </div>
         <div class="lg-item">
         <button class="lg" data-layer="02" aria-expanded="false">
           <span class="mk" style="--mk:#CFEF9A"></span>
-          <span class="lg-title"><b>02</b> - Merkopmaak</span>
+          <span class="lg-title"><b>02</b> - Branding</span>
         </button>
         <div class="lg-panel" data-panel="02"><div class="lg-panel-in">
           <div class="lg-panel-box">
-            <p>Het domein van branding. De opmaak vertalen we naar tokens en componenten, dit doorvoeren kost tijd.</p>
-            <button class="btn-text" data-target="acc-01">Naar “Merkopmaak” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+            <p>Hoe het merk eruitziet: kleur, font, logo en beeld. Branding beslist hier, zolang elke waarde vooraf aan de gestelde voorwaarde voldoet.</p>
+            <button class="btn-text" data-target="acc-01">Naar de sectie “Branding” <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
           </div>
         </div></div>
         </div>
         <div class="lg-item">
         <button class="lg" data-layer="03" aria-expanded="false">
           <span class="mk" style="--mk:#4E8460"></span>
-          <span class="lg-title"><b>03</b> - Vrij</span>
+          <span class="lg-title"><b>03</b> - Overlap</span>
         </button>
         <div class="lg-panel" data-panel="03"><div class="lg-panel-in">
           <div class="lg-panel-box">
-            <p>Geen designimpact en geen overleg nodig. Marketing kan dit zelf blijven wijzigen, ook na livegang.</p>
-            <button class="btn-text" data-target="acc-02">Naar “Vrij” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+            <p>Waar een merkkeuze de werking raakt. Branding kiest de waarde, het design system bepaalt waar die landt, en de toegankelijkheidsnorm beslist bij twijfel.</p>
+            <button class="btn-text" data-target="acc-02">Naar de sectie “Overlap” <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
           </div>
         </div></div>
         </div>
         <div class="lg-item">
         <button class="lg" data-layer="04" aria-expanded="false">
           <span class="mk" style="--mk:#E6EBE4"></span>
-          <span class="lg-title"><b>04</b> - Buiten de ringen</span>
+          <span class="lg-title"><b>04</b> - Aanvullend</span>
         </button>
         <div class="lg-panel" data-panel="04"><div class="lg-panel-in">
           <div class="lg-panel-box">
-            <p>Wordt vaak als branding gepresenteerd, maar is het niet. Dit loopt via een aparte scope- en planningsafspraak.</p>
-            <button class="btn-text" data-target="acc-03">Naar “Buiten de ringen” sectie <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+            <p>Wat er nog bij komt. Componenten en paginatypen die nu nog niet bestaan en die apart bekeken en begroot worden.</p>
+            <button class="btn-text" data-target="acc-03">Naar de sectie “Aanvullend” <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
           </div>
         </div></div>
         </div>
@@ -362,27 +366,28 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
   <section class="sect">
   <h2 class="sec headline-s reveal">
     <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
-    De lagen
+    De vier onderdelen
   </h2>
     <div class="stack">
   <div class="acc open reveal" id="acc-00" style="--c-container:var(--primary-container);--c-on-container:var(--on-primary-container)">
     <button class="acc-head" aria-expanded="true">
       <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-      <span class="acc-title"><span class="k label-m">01 - VAST</span><b>De kern</b></span>
+      <span class="acc-title"><span class="k label-m">01 - KERNOPMAAK</span><b>Hoe het platform is opgebouwd</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Branding beslist hier niet over. Dit is de werking van het platform, geen merkuiting. Wijzigen betekent herontwerpen, met eigen planning en prijs.</p>
+      <p class="intro body-m">Dit gaat over indeling en gedrag, niet over uiterlijk. Hoe een pagina is opgebouwd, hoeveel ruimte er tussen blokken zit, hoe een knop of invoerveld reageert, en in welke volgorde de stappen in de bestelling staan.</p>
+      <p class="intro body-m">Deze keuzes zitten in de bouw van componenten en templates. Een wijziging hier betekent opnieuw ontwerpen en opnieuw bouwen, met een eigen planning en prijs. Daarom ligt dit vast.</p>
       <ul class="rules">
-        <li><b>Layoutgrid, breakpoints en paginaopbouw</b><em>Welke kolommen er zijn, waar de layout omklapt en in welke volgorde componenten op een template staan</em></li>
-        <li><b>Spacingschaal en verticaal ritme</b><em>Alle marges en paddings komen uit één schaal van 4 en 8 px, zodat elk blok overal hetzelfde ademt</em></li>
-        <li><b>Componentstates</b><em>Default, hover, focus, active, disabled, loading, error, empty</em></li>
-        <li><b>Formulierlogica</b><em>Veldvolgorde, labelpositie, validatiemoment, positie van de foutmelding</em></li>
-        <li><b>Checkout- en quick-orderflow</b><em>Aantal stappen, de volgorde ervan en de plek van kredietlimiet, orderreferentie en ADR-melding</em></li>
-        <li><b>CTA-hiërarchie</b><em>Één primaire actie per scherm</em></li>
-        <li><b>WCAG 2.2 AA als ondergrens</b><em>De norm ligt vast en kan niet worden verlaagd omdat een merkkeuze er niet in past</em></li>
-        <li><b>Tokennamen en component-API</b><em>Elgentos bouwt hierop, hernoemen breekt de implementatie</em></li>
-        <li><b>De Hyvä component library als basis</b><em>Het design system is een uitbreiding van de bestaande Hyvä library, geen nieuw systeem; componenten worden toegevoegd, niet vervangen</em></li>
+        <li><b>Indeling van de pagina</b><em>Welke kolommen er zijn, waar de layout omklapt naar mobiel, en in welke volgorde de blokken op een template staan</em></li>
+        <li><b>Witruimte</b><em>Alle afstanden komen uit één schaal in stappen van 4 en 8 px, zodat de ruimte tussen blokken op elke pagina gelijk is</em></li>
+        <li><b>Gedrag van knoppen en velden</b><em>Hoe een element eruitziet in rust, bij hover, bij focus, tijdens laden, wanneer het uitstaat en wanneer er een fout is</em></li>
+        <li><b>Formulieren</b><em>De volgorde van de velden, waar het label staat, wanneer er gecontroleerd wordt en waar de foutmelding verschijnt</em></li>
+        <li><b>Volgorde en stappen in de bestelling</b><em>Uit hoeveel stappen de checkout bestaat, in welke volgorde die staan, en in welke stap de klant zijn kredietlimiet en orderreferentie ziet</em></li>
+        <li><b>Één primaire actie per scherm</b><em>Op elk scherm is één knop de belangrijkste, zodat duidelijk is wat de bezoeker daar moet doen</em></li>
+        <li><b>WCAG 2.2 AA als ondergrens</b><em>De norm ligt vast. Past een merkkeuze er niet in, dan wijkt de merkkeuze, niet de norm</em></li>
+        <li><b>Namen van tokens en componenten</b><em>Elgentos bouwt hierop. Hernoemen breekt de implementatie</em></li>
+        <li><b>De Hyvä library als vertrekpunt</b><em>Het design system is een uitbreiding van de bestaande library, geen nieuw systeem. Componenten worden toegevoegd, niet vervangen</em></li>
       </ul>
     </div></div></div>
   </div>
@@ -390,81 +395,72 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
   <div class="acc reveal" id="acc-01" style="--c-container:var(--tertiary-container);--c-on-container:var(--on-tertiary-container)">
     <button class="acc-head" aria-expanded="false">
       <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>
-      <span class="acc-title"><span class="k label-m">02 - BRANDING BESLIST</span><b>De merkopmaak</b></span>
+      <span class="acc-title"><span class="k label-m">02 - BRANDING</span><b>Hoe het merk eruitziet</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Het domein van branding. Alles landt als tokenwaarde, dus doorvoeren kost minuten. De voorwaarde erachter is niet onderhandelbaar.</p>
+      <p class="intro body-m">Dit is het terrein van branding, van begin tot eind: kleurpalet, fontkeuze, logo, beeldstijl en fotografie.</p>
+      <p class="intro body-m">Deze waarden zitten in variabelen. Een wijziging werkt overal tegelijk door en er hoeft niets herbouwd te worden, ook na livegang. Wel gelden er per onderdeel voorwaarden vooraf.</p>
       <ul class="rules">
-        <li><b>Kleuren</b><em>Voorwaarde: het palet is vooraf getoetst en voldoet aan WCAG 2.2 AA in élke combinatie waarin het voorkomt, inclusief states</em></li>
-        <li><b>Typografie</b><em>Voorwaarde: het font heeft tabulaire cijfers voor prijzen, staffels en SKU's, en werkt vanaf 16 px body</em></li>
-        <li><b>Beeldvorm, beeldstijl en fotografie</b><em>Voorwaarde: binnen de vastgelegde ratio's en cropzones</em></li>
-        <li><b>Logo</b><em>Voorwaarde: past in het vaste slot met minimale afmeting en clear space, horizontaal en gestapeld</em></li>
+        <li><b>Kleurpalet</b><em>Lever per kleur minstens vijf gradaties aan, van donker naar licht, zodat er genoeg tinten zijn voor tekst, randen, achtergronden en hovervlakken. Het palet is vooraf getoetst en haalt WCAG 2.2 AA in elke combinatie waarin het voorkomt, ook in hover, focus en foutmeldingen</em></li>
+        <li><b>Fontkeuze</b><em>Maximaal twee fonts: één voor de koppen en één voor lopende tekst. Meer fonts maken de pagina onrustig en de site trager. Beide blijven leesbaar vanaf 16 px in lopende tekst</em></li>
+        <li><b>Fontbestanden en gewichten</b><em>De fonts zijn aangeschaft en de licentie is overgedragen aan SPUX, er is een webfontversie beschikbaar, en de familie bevat thin, regular, medium, bold, extrabold en italic. Tabulaire cijfers zijn geen eis, maar wel prettig voor prijzen en staffels die onder elkaar staan</em></li>
+        <li><b>Beeldstijl en fotografie</b><em>Binnen de vastgelegde beeldverhoudingen en uitsnedes, zodat beeld op elk schermformaat blijft kloppen. Staat er tekst overheen die in de pagina zelf zit, dan moet die op elk beeld leesbaar blijven, bijvoorbeeld door een rustig vlak of een overlay. Zit de tekst in de afbeelding zelf verwerkt, dan is dat een keuze van branding en ligt de leesbaarheid daar ook</em></li>
+        <li><b>Logo</b><em>Past in het vaste vak met een minimale afmeting en vrije ruimte eromheen, zowel liggend als gestapeld</em></li>
       </ul>
-    </div></div></div>
-  </div>
-
-  <div class="acc reveal" id="acc-grijs" style="--c-container:var(--card-inner-2);--c-on-container:var(--title)">
-    <button class="acc-head" aria-expanded="false">
-      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="15" cy="15" r="7"/></svg></span>
-      <span class="acc-title"><span class="k label-m">GRIJS GEBIED</span><b>Waar branding en UX elkaar raken</b></span>
-      <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-    </button>
-    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Hier ligt de meeste kans op discussie. De beslisregel is telkens dezelfde: branding levert de waarde, UX bepaalt de toepassing.</p>
-      <div class="split"><b>Tekst- en fonthiërarchie, gewichten</b>
-        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Fontfamilie, beschikbare gewichten, karakter van het merkschrift</span></div>
-        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Typeschaal, line-heights, welk gewicht op welk niveau, minimale leesgrootte</span></div>
-      </div>
-      <div class="split"><b>Kleuren en contrastwaarden</b>
-        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De hexwaarden, vooraf getoetst op de norm</span></div>
-        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Welke kleur aan welk token hangt en waar hij verschijnt, plus de contrastbewaking binnen de eigen omgeving</span></div>
-      </div>
-      <div class="split"><b>Iconen</b>
-        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Keuze uit een bestaande library en de gewenste stijlrichting</span></div>
-        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Eén set, één stroke-weight, vaste maten, en een icoon is nooit de enige betekenisdrager</span></div>
-      </div>
-      <div class="split"><b>Borderstijl en diktes</b>
-        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Het karakter: scherp of rond, fijn of zwaar</span></div>
-        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">Eén waarde per token, globaal doorgevoerd, en de border van een invoerveld haalt altijd 3:1</span></div>
-      </div>
-      <div class="split"><b>Copy</b>
-        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Tone of voice, aanspreekvorm en merkvocabulaire</span></div>
-        <div class="row"><span class="who label-s u">ux</span><span class="t body-m">UX-copy binnen die tone of voice: labels, foutmeldingen, lege staten, knopteksten en maximale lengtes per component</span></div>
-      </div>
     </div></div></div>
   </div>
 
   <div class="acc reveal" id="acc-02" style="--c-container:var(--secondary-container);--c-on-container:var(--on-secondary-container)">
     <button class="acc-head" aria-expanded="false">
-      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></span>
-      <span class="acc-title"><span class="k label-m">03 - VRIJ</span><b>Vrij te wijzigen</b></span>
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="15" cy="15" r="7"/></svg></span>
+      <span class="acc-title"><span class="k label-m">03 - OVERLAP</span><b>Waar een merkkeuze de werking raakt</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Geen designimpact, geen overleg nodig. Ook na livegang.</p>
-      <ul class="rules">
-        <li><b>Campagnebanners en USP-teksten</b><em>Binnen de bestaande blokken</em></li>
-        <li><b>Volgorde van contentblokken op marketingpagina's</b><em>Blokken mogen worden herschikt zolang het om bestaande blokken gaat</em></li>
-        <li><b>Sfeerbeeld en productfotografie</b><em>Binnen de vastgelegde ratio's</em></li>
-        <li><b>Tekstuele inhoud van bestaande contentblokken</b><em>Koppen en lopende tekst binnen de maximale lengte die per blok is vastgelegd</em></li>
-      </ul>
+      <p class="intro body-m">Overlap betekent hier letterlijk: de plekken waar branding en UX/UI elkaar raken of kunnen raken. Branding maakt daar een keuze die ook bepaalt hoe het platform werkt. Een kleur is een merkkeuze, maar zodra die op een knop of een foutmelding landt bepaalt hij ook of iemand die kan lezen. Een font is een merkkeuze, maar de grootte bepaalt of de prijs op een telefoon leesbaar blijft.</p>
+      <p class="intro body-m">De regel is telkens dezelfde: branding kiest de waarde, het design system bepaalt waar en hoe die landt, en de toegankelijkheidsnorm beslist bij twijfel.</p>
+      <div class="split"><b>Fontgewichten en tekstgroottes</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De fontfamilie, de beschikbare gewichten en het karakter van het merkschrift</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">Welke grootte bij welk niveau hoort, de regelafstand, en de kleinste maat die nog leesbaar is</span></div>
+      </div>
+      <div class="split"><b>Waar een kleur terechtkomt</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De kleurwaarden zelf, vooraf getoetst op de norm</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">Welke kleur op welke knop, melding of achtergrond landt, en of die combinatie het contrast haalt</span></div>
+      </div>
+      <div class="split"><b>Signaalkleuren</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Of er rood, oranje of groen in het merkpalet zit, en welke tint dat is</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">Op een platform betekenen die kleuren iets vasts: fout, let op, gelukt. Ligt het merkrood dicht bij het rood van een foutmelding, dan krijgt de foutmelding een eigen tint, zodat de bezoeker het verschil ziet</span></div>
+      </div>
+      <div class="split"><b>Iconen</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De keuze uit een bestaande library en de gewenste stijlrichting</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">Één set, één lijndikte en vaste maten. Een icoon draagt nooit in zijn eentje de betekenis, er staat altijd tekst bij</span></div>
+      </div>
+      <div class="split"><b>Randen en lijndiktes</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">Het karakter: scherp of rond, fijn of zwaar</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">Één waarde per token, overal doorgevoerd, en de rand van een invoerveld blijft altijd goed zichtbaar tegen de achtergrond</span></div>
+      </div>
+      <div class="split"><b>Teksten</b>
+        <div class="row"><span class="who label-s b">branding</span><span class="t body-m">De tone of voice, de aanspreekvorm en het merkvocabulaire</span></div>
+        <div class="row"><span class="who label-s u">design system</span><span class="t body-m">De teksten in knoppen, labels, foutmeldingen en lege schermen, binnen die tone of voice en binnen de maximale lengte per component</span></div>
+      </div>
     </div></div></div>
   </div>
 
   <div class="acc reveal" id="acc-03" style="--c-container:var(--error-container);--c-on-container:var(--on-error-container)">
     <button class="acc-head" aria-expanded="false">
-      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
-      <span class="acc-title"><span class="k label-m">04 - NIEUWE SCOPE</span><b>Buiten de ringen</b></span>
+      <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+      <span class="acc-title"><span class="k label-m">04 - AANVULLEND</span><b>Wat er nog bij komt</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Wordt vaak als branding gepresenteerd, maar is het niet. Loopt via een aparte scope- en planningsafspraak.</p>
+      <p class="intro body-m">Componenten en paginatypen die nu nog niet bestaan. Dit is nog niet uitgewerkt en valt buiten de huidige afspraak.</p>
+      <p class="intro body-m">De opmaak wordt zoveel mogelijk afgeleid van componenten die er al staan, dus in de meeste gevallen is er voor branding niets toe te voegen. Komt er echt iets nieuws bij, dan wordt dat apart bekeken en begroot.</p>
       <ul class="rules">
-        <li><b>Nieuwe componenten of paginatypen</b><em>Wat nog niet in de library zit moet worden ontworpen, gebouwd en getest, inclusief alle states</em></li>
-        <li><b>Wijziging van flows of extra velden in de checkout</b><em>Raakt direct aan conversie en aan de koppeling met Magento, dus nooit een losse designwijziging</em></li>
-        <li><b>Producttypen buiten fase 1, zoals bundle en grouped</b><em>Eigen PDP-opbouw, eigen prijsweergave en eigen validatie in het platformwagen</em></li>
-        <li><b>Extra functionaliteit in accountbeheer</b><em>Denk aan gebruikersrollen, budgetten of goedkeuringsstromen; dit is functionaliteit, geen opmaak</em></li>
+        <li><b>Nieuwe componenten of paginatypen</b><em>Wat nog niet in de library zit moet worden ontworpen, gebouwd en getest, in alle toestanden</em></li>
+        <li><b>Een andere volgorde of extra velden in de bestelling</b><em>Dit raakt de conversie en de koppeling met Magento, en is daarom nooit alleen een designwijziging</em></li>
+        <li><b>Producttypen buiten fase 1, zoals bundel- en groepsproducten</b><em>Die hebben een eigen opbouw op de productpagina, een eigen prijsweergave en een eigen controle in de winkelwagen</em></li>
+        <li><b>Extra functionaliteit in het account</b><em>Denk aan gebruikersrollen, budgetten of goedkeuringsstromen. Dat is functionaliteit, geen opmaak</em></li>
       </ul>
     </div></div></div>
   </div>
@@ -480,16 +476,16 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
   <div class="acc reveal" id="acc-icons" style="--c-container:var(--tertiary-container);--c-on-container:var(--on-tertiary-container)">
     <button class="acc-head" aria-expanded="false">
       <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
-      <span class="acc-title"><span class="k label-m">ICONEN</span><b>Eerst kiezen, dan pas tekenen</b></span>
+      <span class="acc-title"><span class="k label-m">ICONEN</span><b>Eén set uit een bestaande library</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">Een eigen icoonset is duur, traag en zelden beter. De volgorde ligt vast.</p>
+      <p class="intro body-m">Iconen komen uit een bestaande library. Er wordt één set gekozen en die wordt overal gebruikt.</p>
       <ul class="rules">
-        <li><b>1. Hugeicons</b><em>Betaalde licentie is aanwezig, breedste set, meerdere stijlen beschikbaar. Eerste keuze.</em></li>
+        <li><b>1. Hugeicons</b><em>Breedste set en meerdere stijlen beschikbaar. De betaalde licentie wordt door SPUX beheerd. Eerste keuze.</em></li>
         <li><b>2. Lucide</b><em>Open source, consistente stroke, past bij een strak en technisch karakter</em></li>
         <li><b>3. Material Symbols</b><em>Zeer volledig en herkenbaar, variabele optische maten, sterk bij veel functionele UI</em></li>
-        <li><b>4. Maatwerk</b><em>Alleen voor iconen die in geen enkele library bestaan, en alleen in de stijl van de gekozen set. Aparte scope en planning.</em></li>
+        <li><b>Ontbreekt een icoon</b><em>Dan wordt er binnen de gekozen set een passend alternatief gekozen</em></li>
       </ul>
     </div></div></div>
   </div>
@@ -501,14 +497,14 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
-      <p class="intro body-m">De norm is WCAG 2.2 AA. Toetsing gebeurt vooraf bij de bron, niet achteraf in het design.</p>
+      <p class="intro body-m">De norm is WCAG 2.2 AA. Toetsing gebeurt zo vroeg mogelijk bij de bron, zodat er in het design niets gerepareerd hoeft te worden.</p>
       <div class="split"><b>Branding</b>
-        <div class="row"><span class="who label-s b">levert</span><span class="t body-m">Een palet en typografie die aantoonbaar aan de norm voldoen, in de combinaties waarin ze gebruikt worden. Inclusief de toetsing zelf.</span></div>
-        <div class="row"><span class="who label-s b">draagt</span><span class="t body-m">De verantwoordelijkheid voor merkkeuzes die de norm niet halen. Een kleur die zakt gaat terug voor een variant.</span></div>
+        <div class="row"><span class="who label-s b">levert</span><span class="t body-m">Een palet en typografie die aantoonbaar aan de norm voldoen in de combinaties waarin ze worden gebruikt, inclusief de toetsing zelf. Dat geldt ook voor fontgroottes en andere keuzes die doorwerken in het UX/UI-deel.</span></div>
+        <div class="row"><span class="who label-s b">past aan</span><span class="t body-m">Merkkeuzes die de norm niet halen. Een kleur die zakt komt terug voor een variant. Dat is een tussenstap, geen afkeuring.</span></div>
       </div>
       <div class="split"><b>Design system</b>
         <div class="row"><span class="who label-s u">bewaakt</span><span class="t body-m">De contrastwaarden binnen de eigen omgeving: tokens, componenten, states en focusindicatoren.</span></div>
-        <div class="row"><span class="who label-s u">weigert</span><span class="t body-m">Aangeleverde waarden die de norm niet halen, in plaats van ze stilzwijgend te corrigeren.</span></div>
+        <div class="row"><span class="who label-s u">signaleert</span><span class="t body-m">Een globale check op wat er wordt aangeleverd. Afwijkingen worden teruggekoppeld in plaats van stilzwijgend gecorrigeerd.</span></div>
       </div>
     </div></div></div>
   </div>
@@ -529,7 +525,7 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
         <li><b>Voorraadstatus, foutmelding, staffelkorting</b><em>Betekenis nooit alleen via kleur</em><span class="chip">+ tekst of vorm</span></li>
         <li><b>Aanklikbare elementen</b><em>Doelgrootte</em><span class="chip">24 px min, 44 px advies</span></li>
         <li><b>Zoom</b><em>Functie blijft intact</em><span class="chip">200%</span></li>
-        <li><b>Disabled states</b><em>Formeel vrijgesteld, praktisch niet in B2B</em><span class="chip">3:1 aanhouden</span></li>
+        <li><b>Disabled states</b><em>Formeel uitgezonderd van de norm, maar in B2B te belangrijk om onleesbaar te laten</em><span class="chip">3:1 aanhouden</span></li>
       </ul>
     </div></div></div>
   </div>
@@ -537,16 +533,16 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
   <div class="acc reveal" id="acc-planning" style="--c-container:var(--error-container);--c-on-container:var(--on-error-container)">
     <button class="acc-head" aria-expanded="false">
       <span class="acc-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-      <span class="acc-title"><span class="k label-m">PLANNING</span><b>Wat wanneer moet liggen</b></span>
+      <span class="acc-title"><span class="k label-m">PLANNING</span><b>Wat wanneer klaar moet zijn</b></span>
       <span class="chev" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
       <div class="gate"><span class="when label-s">nu, ook als concept</span>
-        <p>Richting voor kleurpalet, fontkeuze en logoconcept. Genoeg om één voorbeeldpagina mee te stylen. Concept is prima, definitief hoeft niet.</p></div>
-      <div class="gate"><span class="when label-s">uiterlijk 14 september, week 38</span>
-        <p>Definitief brandbook: kleuren met hexwaarden en contrasttoets, typografie met gewichten, logobestanden en icoonkeuze. Dit is de uiterste grens, niet de streefdatum.</p></div>
+        <p>Richting voor kleurpalet, fontkeuze en logoconcept. Genoeg om één voorbeeldpagina mee te stylen. Een concept volstaat, definitief hoeft nog niet.</p></div>
+      <div class="gate"><span class="when label-s">uiterlijk eind augustus, week 35</span>
+        <p>Definitief brandbook: kleuren met hexwaarden en contrasttoets, typografie met gewichten, logobestanden en icoonkeuze. Daarna resteren twee weken om de branding door te voeren in de pagina's die op dat moment zijn opgeleverd. Eerder aanleveren mag uiteraard altijd.</p></div>
       <div class="gate"><span class="when label-s">na oplevering van het design</span>
-        <p>Wijzigt het brandbook alsnog, dan worden de designaanpassingen die daaruit volgen apart in rekening gebracht. Niet als drempel, maar om eindeloos itereren te voorkomen.</p></div>
+        <p>Wijzigt het brandbook daarna alsnog, dan worden de designaanpassingen die daaruit volgen apart begroot. Dat is geen drempel, het houdt de planning en het budget voorspelbaar.</p></div>
     </div></div></div>
   </div>
 
@@ -558,10 +554,9 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
     </button>
     <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
       <ol class="q">
-        <li>Op welke manier toont branding aan dat het palet getoetst is? Een contrastmatrix bij de oplevering, of alleen een verklaring?</li>
+        <li>Hoe toont branding aan dat het palet getoetst is? Met een contrastmatrix bij de oplevering, of met een verklaring?</li>
         <li>Valt Qureon als B2B-groothandel binnen de reikwijdte van de EAA, of is WCAG 2.2 AA hier een eigen kwaliteitsnorm?</li>
         <li>Wie levert de UX-copy in de eerste versie, en wie toetst die op tone of voice?</li>
-        <li>Wie is na oplevering eigenaar van het design system, en mag Elgentos het zelfstandig uitbreiden?</li>
       </ol>
     </div></div></div>
   </div>
@@ -579,7 +574,7 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
       <h3 class="label-m">Icoonlibraries</h3>
       <a class="src" href="https://hugeicons.com" target="_blank" rel="noopener">
         <span class="s-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
-        <span class="s-txt"><b>Hugeicons</b><span>hugeicons.com · betaalde licentie aanwezig</span></span>
+        <span class="s-txt"><b>Hugeicons</b><span>hugeicons.com · betaalde licentie, in beheer bij SPUX</span></span>
         <span class="s-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
       </a>
       <a class="src" href="https://lucide.dev/icons/" target="_blank" rel="noopener">
@@ -630,7 +625,7 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
     </div>
   </section>
 
-  <footer class="reveal">Qureon design system, kaders v1.9, naar aanleiding van het designvoorstelgesprek van 22 juli 2026</footer>
+  <footer class="reveal">Qureon design system, kaders versie 2.0, opgesteld naar aanleiding van het designgesprek van 22 juli 2026</footer>
 </div>
 
 <script>
