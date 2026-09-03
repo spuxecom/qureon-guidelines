@@ -206,6 +206,11 @@ svg.rings{display:block;width:100%;height:auto;max-width:340px;margin:0 auto;ove
   100%{box-shadow:0 0 0 14px rgba(14,59,31,0)}
 }
 .acc.pulse{animation:accPulse .9s var(--easing)}
+.subsec{margin:40px 0 24px;padding-top:32px;border-top:1px solid var(--line-soft)}
+.subsec .k{display:block;color:var(--text-soft);text-transform:uppercase;font-family:var(--font);
+  font-size:12px;line-height:16px;letter-spacing:.5px;font-weight:500;margin-bottom:8px}
+.subsec h3{margin:0;color:#000000;font-family:var(--font);
+  font-size:24px;line-height:32px;letter-spacing:0;font-weight:500}
 
 /* ---------- inner content ---------- */
 .rules{list-style:none;margin:0;padding:0;display:grid;gap:2px}
@@ -389,9 +394,9 @@ footer{margin:0;padding:0;color:var(--text-soft);font-size:16px;line-height:1.5}
         <li><b>Namen van tokens en componenten</b><em>Elgentos bouwt hierop. Hernoemen breekt de implementatie</em></li>
         <li><b>De Hyvä library als vertrekpunt</b><em>Het design system is een uitbreiding van de bestaande library, geen nieuw systeem. Componenten worden toegevoegd, niet vervangen</em></li>
       </ul>
-      <div style="margin:40px 0 24px;padding-top:32px;border-top:1px solid var(--line-soft)">
-        <span class="label-m" style="display:block;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px">Aanvullend binnen kernopmaak</span>
-        <h3 class="title-l" style="margin:0;color:#000000;font-weight:500">Call to actions</h3>
+      <div class="subsec">
+        <span class="k">Aanvullend binnen kernopmaak</span>
+        <h3>Call to actions</h3>
       </div>
       <p class="intro body-m">Een call to action is het punt waar het platform iets van de bezoeker vraagt. De hiërarchie, het gedrag en de toepassing daarvan liggen bij SPUX, ook wanneer branding de kleuren levert.</p>
       <ul class="rules">
